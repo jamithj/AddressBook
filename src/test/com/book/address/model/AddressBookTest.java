@@ -17,9 +17,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class AddressBookTest {
     private Map<Long, Contact> contacts;
+    private String printString;
 
     public AddressBookTest() {
         contacts = new ConcurrentHashMap<>();
+    }
+
+    public void setPrintString(String in){
+        printString += in;
+    }
+
+    public String getPrintString(){
+        return printString;
     }
 
     public Map<Long, Contact> getContacts(){
@@ -48,6 +57,11 @@ public class AddressBookTest {
         }
     }
 
+    public String printContacts(){
+        this.contacts.values().forEach(c -> setPrintString(c.print() + "\n"));
+        return getPrintString();
+    }
+
     Customer customer1 = new Customer("John", "Harris", "Paul");
     Telephone telephone1 = new Telephone("03 7856 9845", "03 9045 2346", "04 6733 3470");
     Contact contact1 = new Contact(customer1, telephone1);
@@ -56,6 +70,14 @@ public class AddressBookTest {
     public void testAddContact() throws AddressBookException{
         assertEquals(addAContact(contact1), true);
         assertEquals(getContacts().containsValue(contact1), true);
+    }
+
+    @Test
+    public void testPrintContacts() throws AddressBookException{
+        testAddContact();
+        String printContactsString = printContacts();
+        System.out.println("printContactsString: " + printContactsString);
+        assertEquals(printContactsString.length() > 0, true);
     }
 
     @Test

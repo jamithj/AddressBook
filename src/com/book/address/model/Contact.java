@@ -40,4 +40,8 @@ public class Contact {
     public Telephone getTelephone(){
         return telephone;
     }
+
+    public String print(){
+        return "Customer: " + customer.print() + "Telephone: " + telephone.print();
+    }
 }

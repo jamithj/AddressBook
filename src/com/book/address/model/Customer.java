@@ -45,4 +45,8 @@ public class Customer {
     public String getLastName(){
         return last;
     }
+
+    public String print() {
+        return getFirstName() + getMiddleName() + getLastName();
+    }
 }
