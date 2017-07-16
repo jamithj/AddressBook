@@ -52,7 +52,6 @@ public class AddressBookApp {
         Map<Long, Contact> uniqueContacts = new HashMap<>();
         addressBooks.values().forEach(ab -> uniqueContacts.putAll(ab.getContacts()));
         uniqueContacts.values().forEach(c -> {
-            System.out.println("c" + c.getId());
                     c.print();
                     setPrintString("");
                     setPrintString(c.getPrintString());
