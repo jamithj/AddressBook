@@ -22,6 +22,9 @@ Util: Class with helper functions and attributes.
 
 Main: Main class of the application.
 
+AddressBookException: Custom exception used in this application. Caller needs to handle this exception in methods calls
+                      of AddressBookApp class.
+
 Design and Development Methodologies
 ------------------------------------
 Solution is based on Object Oriented Design principles and Test Drive Development (TDD).
