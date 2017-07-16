@@ -1,0 +1,12 @@
+.idea/
+classes/
+/bin/
+*/bin/
+target/
+*.bat
+*.iml
+out/
+.iml".gradle/"
+"build/"
+.gradle
+build/
