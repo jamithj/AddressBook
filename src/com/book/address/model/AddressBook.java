@@ -2,6 +2,8 @@ package com.book.address.model;
 
 import com.book.address.exception.AddressBookException;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -47,6 +49,49 @@ public class AddressBook {
             return !isContactExist(contact);
         } catch (Exception e) {
             throw AddressBookException.create("Exception in removing a contact to address book. ", e);
+        }
+    }
+
+    public Map<Long, Contact> populateContactsMap(List<Contact> contacts) throws AddressBookException {
+        Map<Long, Contact> contactList = new HashMap<>();
+        try {
+            if (!contacts.isEmpty()) {
+                for (int i = 0; i < contacts.size(); i++) {
+                    contactList.put(contacts.get(i).getId(), contacts.get(i));
+                }
+            } else {
+                System.out.println("Empty contact list provided");
+            }
+            return contactList;
+        } catch (Exception e) {
+            throw AddressBookException.create("Exception in populating contacts map in address book. ", e);
+        }
+    }
+
+    public void addAContacts(List<Contact> contacts) throws AddressBookException {
+        try {
+            Map<Long, Contact> contactsMap = populateContactsMap(contacts);
+            if (!contactsMap.isEmpty())
+                this.contacts.putAll(contactsMap);
+        } catch (Exception e) {
+            throw AddressBookException.create("Exception in adding contacts to address book. ", e);
+        }
+    }
+
+    public List<Contact> removeAContacts(List<Contact> contacts) throws AddressBookException {
+        try {
+            if (!contacts.isEmpty()) {
+                for (int i = 0; i < contacts.size(); i++) {
+                    if (this.contacts.remove(contacts.get(i).getId()) == contacts.get(i)) {
+                        contacts.remove(i);
+                    }
+                }
+            } else {
+                System.out.println("Empty contact list provided");
+            }
+            return contacts;
+        } catch (Exception e) {
+            throw AddressBookException.create("Exception in adding contacts to address book. ", e);
         }
     }
 
