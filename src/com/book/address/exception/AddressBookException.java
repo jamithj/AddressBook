@@ -1,4 +1,4 @@
-package test.com.book.address.exception;
+package com.book.address.exception;
 
 /**
  * Created by jamit on 16/07/2017.

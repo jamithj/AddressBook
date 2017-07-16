@@ -5,11 +5,13 @@ package test.com.book.address.model;
  */
 
 import static junit.framework.Assert.assertEquals;
-import org.junit.Test;
-import test.com.book.address.exception.AddressBookException;
 
-import java.util.HashMap;
-import java.util.List;
+import com.book.address.model.Contact;
+import com.book.address.model.Customer;
+import com.book.address.model.Telephone;
+import org.junit.Test;
+import com.book.address.exception.AddressBookException;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -37,6 +39,15 @@ public class AddressBookTest {
         }
     }
 
+    public boolean removeAContact(Contact contact) throws AddressBookException {
+        try {
+            this.contacts.remove(contact.getId());
+            return !isContactExist(contact);
+        } catch (Exception e) {
+            throw AddressBookException.create("Exception in removing a contact to address book. ", e);
+        }
+    }
+
     Customer customer1 = new Customer("John", "Harris", "Paul");
     Telephone telephone1 = new Telephone("03 7856 9845", "03 9045 2346", "04 6733 3470");
     Contact contact1 = new Contact(customer1, telephone1);
@@ -45,6 +56,13 @@ public class AddressBookTest {
     public void testAddContact() throws AddressBookException{
         assertEquals(addAContact(contact1), true);
         assertEquals(getContacts().containsValue(contact1), true);
+    }
+
+    @Test
+    public void testRemoveContact() throws AddressBookException{
+        testAddContact();
+        assertEquals(removeAContact(contact1), true);
+        assertEquals(getContacts().containsValue(contact1), false);
     }
 
 

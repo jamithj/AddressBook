@@ -1,4 +1,4 @@
-package test.com.book.address.model;
+package com.book.address.model;
 
 /**
  * Created by jamit on 16/07/2017.

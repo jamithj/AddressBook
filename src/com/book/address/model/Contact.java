@@ -1,4 +1,4 @@
-package test.com.book.address.model;
+package com.book.address.model;
 
 import java.util.Random;
 
