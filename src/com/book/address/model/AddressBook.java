@@ -1,21 +1,51 @@
 package com.book.address.model;
 
+import com.book.address.Util.Util.*;
 import com.book.address.exception.AddressBookException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import static com.book.address.Util.Util.randomNumberGenerator;
 
 /**
  * Created by jamit on 16/07/2017.
  */
 public class AddressBook {
+    private Long id;
+    private AddressBookType bookType;
+    private String name;
     private Map<Long, Contact> contacts;
     private String printString;
 
-    public AddressBook() {
+    public AddressBook(AddressBookType inType) {
+        setId(randomNumberGenerator.nextLong());
+        setBookType(inType);
         contacts = new ConcurrentHashMap<>();
+    }
+
+    public void setId(Long inId){
+        id = inId;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setBookType(AddressBookType inBookType){
+        bookType = inBookType;
+    }
+
+    public AddressBookType getBookType(){
+        return bookType;
+    }
+
+    public void setName(String inName){
+        name = inName;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void setPrintString(String in){
@@ -36,8 +66,12 @@ public class AddressBook {
 
     public boolean addAContact(Contact contact) throws AddressBookException {
         try {
-            this.contacts.put(contact.getId(), contact);
-            return isContactExist(contact);
+            if(!isContactExist(contact)){
+                this.contacts.put(contact.getId(), contact);
+                return isContactExist(contact);
+            } else {
+                throw AddressBookException.create("Exception in adding a contact to address book. Contact already exists");
+            }
         } catch (Exception e) {
             throw AddressBookException.create("Exception in adding a contact to address book. ", e);
         }
@@ -96,7 +130,12 @@ public class AddressBook {
     }
 
     public String printContacts(){
-        this.contacts.values().forEach(c -> setPrintString(c.print() + "\n"));
+        setPrintString("");
+        this.contacts.values().forEach(c -> {
+            c.print();
+            setPrintString(c.getPrintString());
+        });
         return getPrintString();
     }
+
 }

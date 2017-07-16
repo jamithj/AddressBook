@@ -46,6 +46,10 @@ public class Telephone {
     }
 
     public String print() {
-        return getHomeNumber() + getWorkNumber() + getMobileNumber();
+        String printString = "";
+        if (getHomeNumber() != null && getHomeNumber().length() != 0) { printString += "Home number: "+ getHomeNumber() + " ";}
+        if (getWorkNumber() != null && getWorkNumber().length() != 0) { printString += "Work number: "+ getWorkNumber() + " ";}
+        if (getMobileNumber().length() != 0) { printString += "Mobile number: "+ getMobileNumber();}
+        return printString;
     }
 }

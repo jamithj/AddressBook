@@ -47,6 +47,10 @@ public class Customer {
     }
 
     public String print() {
-        return getFirstName() + getMiddleName() + getLastName();
+        String printString = "";
+        if (!getFirstName().isEmpty()) { printString += getFirstName() + " ";}
+        if (getMiddleName() != null && !getMiddleName().isEmpty()) { printString += getMiddleName() +" ";}
+        if (!getLastName().isEmpty()) { printString += getLastName()  + ". ";}
+        return printString;
     }
 }

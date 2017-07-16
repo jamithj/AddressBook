@@ -2,14 +2,16 @@ package com.book.address.model;
 
 import java.util.Random;
 
+import static com.book.address.Util.Util.randomNumberGenerator;
+
 /**
  * Created by jamit on 16/07/2017.
  */
 public class Contact {
-    private static final Random randomNumberGenerator = new Random(0);
     private Long id;
     private Customer customer;
     private Telephone telephone;
+    private String printString;
 
     public Contact(Customer customer, Telephone telephone) {
         setId(randomNumberGenerator.nextLong());
@@ -23,6 +25,14 @@ public class Contact {
 
     public Long getId(){
         return id;
+    }
+
+    public void setPrintString(String inPrintString){
+        this.printString = inPrintString;
+    }
+
+    public String getPrintString(){
+        return printString;
     }
 
     public void setCustomer(Customer customer){
@@ -41,7 +51,9 @@ public class Contact {
         return telephone;
     }
 
-    public String print(){
-        return "Customer: " + customer.print() + "Telephone: " + telephone.print();
+    public void print(){
+        setPrintString("");
+        setPrintString("Customer: " + customer.print() + "Telephone: " + telephone.print() + "\n");
     }
+
 }
