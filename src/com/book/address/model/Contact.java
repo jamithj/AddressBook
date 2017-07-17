@@ -1,7 +1,5 @@
 package com.book.address.model;
 
-import java.util.Random;
-
 import static com.book.address.Util.Util.randomNumberGenerator;
 
 /**

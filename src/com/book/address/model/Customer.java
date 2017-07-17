@@ -46,6 +46,10 @@ public class Customer {
         return last;
     }
 
+    /** print: get customer details print string
+     *
+     *  @return print string
+     */
     public String print() {
         String printString = "";
         if (!getFirstName().isEmpty()) { printString += getFirstName() + " ";}

@@ -64,6 +64,11 @@ public class AddressBook {
         return contacts.containsValue(contact);
     }
 
+    /** addAContact: add contact to the address book
+     *
+     *  @return boolean
+     *  @throws AddressBookException
+     */
     public boolean addAContact(Contact contact) throws AddressBookException {
         try {
             if(!isContactExist(contact)){
@@ -77,6 +82,11 @@ public class AddressBook {
         }
     }
 
+    /** removeAContact: remove contact from the address book
+     *
+     *  @return boolean
+     *  @throws AddressBookException
+     */
     public boolean removeAContact(Contact contact) throws AddressBookException {
         try {
             this.contacts.remove(contact.getId());
@@ -86,6 +96,11 @@ public class AddressBook {
         }
     }
 
+    /** populateContactsMap: populate contacts Map
+     *
+     *  @return Map of contcts; Map<Long, Contact>
+     *  @throws AddressBookException
+     */
     public Map<Long, Contact> populateContactsMap(List<Contact> contacts) throws AddressBookException {
         Map<Long, Contact> contactList = new HashMap<>();
         try {
@@ -102,6 +117,11 @@ public class AddressBook {
         }
     }
 
+    /** addAContacts: add contacts
+     *
+     *  @return void
+     *  @throws AddressBookException
+     */
     public void addAContacts(List<Contact> contacts) throws AddressBookException {
         try {
             Map<Long, Contact> contactsMap = populateContactsMap(contacts);
@@ -112,6 +132,11 @@ public class AddressBook {
         }
     }
 
+    /** removeAContacts: remove contacts
+     *
+     *  @return List<Contact>
+     *  @throws AddressBookException
+     */
     public List<Contact> removeAContacts(List<Contact> contacts) throws AddressBookException {
         try {
             if (!contacts.isEmpty()) {
@@ -129,6 +154,10 @@ public class AddressBook {
         }
     }
 
+    /** printContacts: rprint contacts of the address book
+     *
+     *  @return print string
+     */
     public String printContacts(){
         setPrintString("");
         this.contacts.values().forEach(c -> {

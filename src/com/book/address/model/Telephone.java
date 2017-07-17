@@ -45,6 +45,10 @@ public class Telephone {
         return this.mobileNumber;
     }
 
+    /** print: get telephone details print string
+     *
+     *  @return print string
+     */
     public String print() {
         String printString = "";
         if (getHomeNumber() != null && getHomeNumber().length() != 0) { printString += "Home number: "+ getHomeNumber() + " ";}

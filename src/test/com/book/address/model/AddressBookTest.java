@@ -20,6 +20,8 @@ import java.util.Map;
 
 public class AddressBookTest {
 
+    /** Populating test data.
+     */
     private Customer customer1 = new Customer("John", "Harris", "Paul");
     private Telephone telephone1 = new Telephone("03 7856 9845", "03 9045 2346", "04 6733 3470");
     private Contact contact1 = new Contact(customer1, telephone1);
@@ -31,12 +33,22 @@ public class AddressBookTest {
     private Contact contact3 = new Contact(customer3, telephone3);
     private AddressBook addressBook;
 
+    /**
+     * testAddContact: Contact should be able to add to the address book
+     * @throws AddressBookException
+      */
+
     @Test
     public void testAddContact() throws AddressBookException{
         addressBook = new AddressBook(Util.AddressBookType.INDIVIDUAL);
         assertEquals(addressBook.addAContact(contact1), true);
         assertEquals(addressBook.getContacts().containsValue(contact1), true);
     }
+
+    /**
+     *  testPrintContacts: Contacts of the address book is printable
+     *  @throws AddressBookException
+      */
 
     @Test
     public void testPrintContacts() throws AddressBookException{
@@ -46,12 +58,22 @@ public class AddressBookTest {
         assertEquals(printContactsString.length() > 0, true);
     }
 
+    /**
+     * testRemoveContact: Contact can be removed from the address book.
+     * @throws AddressBookException
+     */
+
     @Test
     public void testRemoveContact() throws AddressBookException{
         testAddContact();
         assertEquals(addressBook.removeAContact(contact1), true);
         assertEquals(addressBook.getContacts().containsValue(contact1), false);
     }
+
+    /**
+     * testAddContacts: Contacts can be added to the address book.
+     * @throws AddressBookException
+     */
 
     @Test
     public void testAddContacts() throws AddressBookException{
@@ -67,6 +89,11 @@ public class AddressBookTest {
         assertEquals(contacts.containsValue(contact2), true);
         assertEquals(contacts.containsValue(contact3), true);
     }
+
+    /**
+     * testRemoveContacts: Contacts can be removed from the address book.
+     * @throws AddressBookException
+     */
 
     @Test
     public void testRemoveContacts() throws AddressBookException{

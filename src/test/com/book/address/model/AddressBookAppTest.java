@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Created by jamit on 16/07/2017.
@@ -17,7 +15,8 @@ public class AddressBookAppTest {
     public AddressBookAppTest() {
     }
 
-
+    /** Populating test data.
+     */
     private Customer customer1 = new Customer("John", "Harris", "Paul");
     private Telephone telephone1 = new Telephone("03 7856 9845", "03 9045 2346", "04 6733 3470");
     private Contact contact1 = new Contact(customer1, telephone1);
@@ -33,6 +32,11 @@ public class AddressBookAppTest {
     private AddressBookApp addressBookApp;
     private List<Contact> contactsList = new ArrayList<>();
 
+    /** populateContactList: populating contact list.
+     *
+     *  @return List<Contact>
+     *  @throws AddressBookException
+     */
     private List<Contact> populateContactList(List<Contact> contactList){
         this.contactsList.add(contact1);
         this.contactsList.add(contact2);
@@ -40,6 +44,10 @@ public class AddressBookAppTest {
         return contactList;
     }
 
+    /**
+     * testAddAddressBook: Testing adding multiple address books to address book application.
+     * @throws AddressBookException
+     */
     @Test
     public void testAddAddressBook() throws AddressBookException {
         addressBookApp = new AddressBookApp();
@@ -51,6 +59,10 @@ public class AddressBookAppTest {
         assert(addressBookApp.getAddressBooks().containsValue(addressBookRetail));
     }
 
+    /**
+     * testPrintUniqueContacts: Testing of printing unique set of contacts across all address books.
+     * @throws AddressBookException
+     */
     @Test
     public void testPrintUniqueContacts() throws AddressBookException {
         testAddAddressBook();

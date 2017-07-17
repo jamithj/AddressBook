@@ -4,8 +4,6 @@ import com.book.address.exception.AddressBookException;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by jamit on 16/07/2017.
@@ -35,6 +33,12 @@ public class AddressBookApp {
         return addressBooks.containsValue(addressBook);
     }
 
+    /**
+     * addAddressBook: Add an address book
+     *
+     * @return boolean
+     * @throws AddressBookException
+     */
     public boolean addAddressBook(AddressBook addressBook) throws AddressBookException {
         try {
             if (!isAddressBookExist(addressBook)) {
@@ -48,12 +52,19 @@ public class AddressBookApp {
         }
     }
 
+
+    /**
+     * printUniqueContacts: Print unique contacts across all address books
+     *
+     * @return print string.
+     * @throws AddressBookException
+     */
     public String printUniqueContacts() throws AddressBookException {
         Map<Long, Contact> uniqueContacts = new HashMap<>();
         addressBooks.values().forEach(ab -> uniqueContacts.putAll(ab.getContacts()));
         uniqueContacts.values().forEach(c -> {
-                    c.print();
                     setPrintString("");
+                    c.print();
                     setPrintString(c.getPrintString());
                 }
         );
